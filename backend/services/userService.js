@@ -30,7 +30,7 @@ export const searchUsers = async (userId, query, page = 1, limit = 20) => {
 
   const users = await UserModel.find({
     _id: { $ne: userId },
-    $or: [{ displayName: searchRegex }, { email: searchRegex }],
+    $text: { $search: query },
   })
     .select("-password -refreshToken")
     .skip(skip)
@@ -39,7 +39,7 @@ export const searchUsers = async (userId, query, page = 1, limit = 20) => {
 
   const total = await UserModel.countDocuments({
     _id: { $ne: userId },
-    $or: [{ displayName: searchRegex }, { email: searchRegex }],
+    $text: { $search: query },
   });
 
   return {

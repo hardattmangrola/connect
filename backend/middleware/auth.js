@@ -23,13 +23,10 @@ export const protect = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, config.jwt.accessSecret);
-    const user = await User.findById(decoded.userId);
-    if (!user) {
-      throw new ApiError(401, "User no longer exists.");
-    }
 
-    req.user = user;
-    req.userId = user._id;
+    // Optimization: Skip fetching full User document on every API call.
+    // Routes that need the full user object (like getMe) can fetch it themselves.
+    req.userId = decoded.userId;
     next();
   } catch (error) {
     if (error.name === "JsonWebTokenError") {
@@ -52,10 +49,8 @@ export const optionalAuth = async (req, res, next) => {
     if (!token) return next();
 
     const decoded = jwt.verify(token, config.jwt.accessSecret);
-    const user = await User.findById(decoded.userId);
-    if (user) {
-      req.user = user;
-      req.userId = user._id;
+    if (decoded && decoded.userId) {
+      req.userId = decoded.userId;
     }
     next();
   } catch {

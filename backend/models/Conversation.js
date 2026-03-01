@@ -41,16 +41,19 @@ conversationSchema.pre("save", function (next) {
 });
 
 conversationSchema.statics.findOrCreate = async function (user1Id, user2Id) {
-  const [id1, id2] = [user1Id, user2Id].sort((a, b) =>
+  const id1 = new mongoose.Types.ObjectId(user1Id);
+  const id2 = new mongoose.Types.ObjectId(user2Id);
+  const [p1, p2] = [id1, id2].sort((a, b) =>
     a.toString().localeCompare(b.toString())
   );
+
   let conversation = await this.findOne({
-    participants: { $all: [id1, id2] },
+    participants: [p1, p2], // match exact sorted array
   }).populate("lastMessage");
 
   if (!conversation) {
     conversation = await this.create({
-      participants: [id1, id2],
+      participants: [p1, p2],
     });
   }
   return conversation;

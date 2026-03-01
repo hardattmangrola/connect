@@ -7,9 +7,10 @@ import * as userService from "../services/userService.js";
 import * as uploadService from "../services/uploadService.js";
 
 export const getMe = asyncHandler(async (req, res) => {
+  const user = await userService.getUserById(req.userId);
   res.json({
     success: true,
-    data: { user: req.user },
+    data: { user },
   });
 });
 

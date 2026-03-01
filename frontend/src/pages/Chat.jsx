@@ -34,9 +34,8 @@ export default function Chat() {
     <div className="flex h-screen bg-white">
       {/* Sidebar - visible on desktop, or on mobile when showing list */}
       <aside
-        className={`w-80 flex-shrink-0 border-r border-slate-200 overflow-hidden transition-all ${
-          showMobileList ? "block flex-1 sm:flex-initial" : "hidden sm:block"
-        }`}
+        className={`w-80 flex-shrink-0 border-r border-slate-200 overflow-hidden transition-all ${showMobileList ? "block flex-1 sm:flex-initial" : "hidden sm:block"
+          }`}
       >
         <ChatSidebar
           conversations={conversations}
@@ -47,9 +46,8 @@ export default function Chat() {
 
       {/* Main chat area - on mobile with active chat, show back button */}
       <main
-        className={`flex-1 flex flex-col min-w-0 overflow-hidden ${
-          !showMobileList ? "block" : "hidden sm:flex"
-        }`}
+        className={`flex-1 flex flex-col min-w-0 overflow-hidden ${!showMobileList ? "flex flex-col" : "hidden sm:flex sm:flex-col"
+          }`}
       >
         {conversationId && (
           <div className="sm:hidden flex items-center gap-2 p-3 bg-white border-b border-slate-200 shrink-0">
@@ -80,9 +78,8 @@ export default function Chat() {
       <nav className="sm:hidden fixed bottom-0 left-0 right-0 h-14 bg-white border-t border-slate-200 flex items-center justify-around z-10">
         <Link
           to="/chat"
-          className={`flex-1 text-center py-3 ${
-            showMobileList ? "text-teal-600 font-medium" : "text-slate-600"
-          }`}
+          className={`flex-1 text-center py-3 ${showMobileList ? "text-teal-600 font-medium" : "text-slate-600"
+            }`}
         >
           Chats
         </Link>
