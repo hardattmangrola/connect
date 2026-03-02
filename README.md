@@ -84,3 +84,5 @@ I have deployed the backend and frontend on Render.
 <div align="center">
   <h3> <a href="https://connect-1puf.onrender.com">Try the Live Demo</a></h3>
 </div>
+
+![UI](https://github.com/hardattmangrola/connect/blob/6fd5287f549bc198bed037db220cd608b2efbe5b/demo_photo.png)
