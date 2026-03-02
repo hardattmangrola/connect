@@ -80,9 +80,7 @@ future deployment flexibility.
 
 ## For Evaluators
 
-This README is intentionally focused on describing the project and its
-architecture. Deployment instructions and environment details will be added in
-a later stage. Reviewers should explore the folder structure to understand the
-clear division between routes, controllers, services, and UI components, and
-inspect example files such as `authService.js`, `ChatWindow.jsx`, and
-`socket/index.js` to see implementation patterns.
+I have deployed the backend and frontend on Render.
+<div align="center">
+  <h3> <a href="https://connect-1puf.onrender.com">Try the Live Demo</a></h3>
+</div>
